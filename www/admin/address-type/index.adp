@@ -5,7 +5,7 @@
 <h3>@title@</h3>
 <hr>
 
-<if @address_types:rowcount@ gt 0>
+<if @address_types:rowcount;literal@ gt 0>
 <table border=0 cellspacing=0 cellpadding=1 width=100%>
 <tr>
   <th align=left>Admin Address Type</th>

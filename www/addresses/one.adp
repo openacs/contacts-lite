@@ -26,10 +26,10 @@
 
     <tr>
       <td colspan="2" align="right">
-	<if @addresses.write_p@ eq 1>
+	<if @addresses.write_p;literal@ true>
           <a href="addresses/add-edit?contact_id=@contact_id@&address_id=@addresses.address_id@">edit</a> 
         </if>
-        <if @addresses.delete_p@ eq 1>
+        <if @addresses.delete_p;literal@ true>
 	  <a href="addresses/delete?address_id=@addresses.address_id@&contact_id=@contact_id@">delete</a>
   	</if>
       </td>
@@ -39,7 +39,7 @@
     <td colspan="2">&nbsp;</td>
     </tr> 
     </table>    
-    <if @contact_write_p@ eq 1>
+    <if @contact_write_p;literal@ true>
     <div align="left"> [ <a href="addresses/add-edit?contact_id=@contact_id@">New Address</a> ]
     </div>
     </if>

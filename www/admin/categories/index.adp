@@ -5,7 +5,7 @@
 <h3>@title@</h3>
 <hr>
 
-<if @categories:rowcount@ gt 0>
+<if @categories:rowcount;literal@ gt 0>
 <table border=0 cellspacing=0 cellpadding=1 width=100%>
 <tr>
   <th align=left>Category</th>

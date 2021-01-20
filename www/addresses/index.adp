@@ -13,7 +13,7 @@
 <b>@contacts.company_name@</b><br>
 
 
-<if @addresses:rowcount@ gt 0>
+<if @addresses:rowcount;literal@ gt 0>
 <table border="0" cellspacing="0" cellpadding="1" width="100%">
 <tr>
   <th align=left>Address</th>
@@ -41,7 +41,7 @@
   </td>
 
   <td width="5%" valign="right">
-  <if @addresses.write_p@ eq "t">
+  <if @addresses.write_p;literal@ true>
     <a href="add-edit?address_id=@addresses.address_id@&contact_id=@addresses.contact_id@">Edit</a>
   </if>
   <else>
@@ -50,7 +50,7 @@
   </td>
 
   <td width="5%" valign="right">
-  <if @addresses.delete_p@ eq "t">
+  <if @addresses.delete_p;literal@ true>
     <a href="delete?address_id=@addresses.address_id@">Delete</a>
   </if>
   <else>

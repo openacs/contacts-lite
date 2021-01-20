@@ -11,7 +11,7 @@
 @contacts.pretty_name@<br>
 <b>@contacts.company_name@</b>
 <hr>
-<if @phones:rowcount@ gt 0>
+<if @phones:rowcount;literal@ gt 0>
 <table border=0 cellspacing=0 cellpadding=1 width=100%>
 <tr>
   <th align=left>Phone Numbers</th>
@@ -39,7 +39,7 @@
   </td>
 
   <td width="5%" valign=right>
-  <if @phones.write_p@ eq "t">
+  <if @phones.write_p;literal@ true>
     <a href="add-edit?contact_id=@phones.contact_id@&phone_number_id=@phones.phone_number_id@">Edit</a>
   </if>
   <else>
@@ -48,7 +48,7 @@
   </td>
 
   <td width="5%" valign=right>
-  <if @phones.delete_p@ eq "t">
+  <if @phones.delete_p;literal@ true>
     <a href="delete?phone_number_id=@phones.phone_number_id@">Delete</a>
   </if>
   <else>

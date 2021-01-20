@@ -48,7 +48,7 @@
     <td> @contact.notes@ </td></tr>
     </if>
 
-    <if @contact_write_p@ eq 1>
+    <if @contact_write_p;literal@ true>
     <tr><td colspan="2" align="right">
     <a href="add-edit.tcl?contact_id=@contact_id@">edit info</a>
     </td></tr>
@@ -62,7 +62,7 @@
     <h4>Address Information</h4>
 
     <table>
-    <if @addresses:rowcount@ gt 0>
+    <if @addresses:rowcount;literal@ gt 0>
     <multiple name="addresses">
     <tr><th valign=top align=right>Address</th>
     <td>@addresses.delivery_address@</a></td>
@@ -85,10 +85,10 @@
 
     <tr>
       <td colspan="2" align="right">
-	<if @contact_write_p@ eq 1>
+	<if @contact_write_p;literal@ true>
           <a href="addresses/add-edit?contact_id=@contact_id@&address_id=@addresses.address_id@">edit</a> 
         </if>
-        <if @contact_write_p@ eq 1>
+        <if @contact_write_p;literal@ true>
 	  <a href="addresses/delete?address_id=@addresses.address_id@&contact_id=@contact_id@">delete</a>
   	</if>
       </td>
@@ -103,7 +103,7 @@
     <tr><td>No address information</td></tr>
     </else>
     </table>    
-    <if @contact_write_p@ eq 1>
+    <if @contact_write_p;literal@ true>
     <div align="left">
       [ <a href="addresses/add-edit?contact_id=@contact_id@">New Address</a> ]
     </div>
@@ -117,7 +117,7 @@
     <h4>Phone Information</h4>
 
     <table>
-    <if @phones:rowcount@ gt 0>
+    <if @phones:rowcount;literal@ gt 0>
     <multiple name="phones">
     <tr>
       <th align="right">Phone Number:</th>
@@ -133,10 +133,10 @@
     </tr>
     <tr>
       <td colspan="2" align="right">
-	<if @contact_write_p@ eq 1>
+	<if @contact_write_p;literal@ true>
           <a href="phones/add-edit?contact_id=@contact_id@&phone_number_id=@phones.phone_number_id@">edit</a> 
         </if>
-        <if @contact_write_p@ eq 1>
+        <if @contact_write_p;literal@ true>
 	  <a href="phones/delete?phone_number_id=@phones.phone_number_id@&contact_id=@contact_id@">delete</a>
   	</if>
       </td>
@@ -153,7 +153,7 @@
     </tr>
     </else>
     </table>
-    <if @contact_write_p@ eq 1>
+    <if @contact_write_p;literal@ true>
     <div align="left">
       [ <a href="phones/add-edit?contact_id=@contact_id@">New Phone Number</a> ]
     </div>

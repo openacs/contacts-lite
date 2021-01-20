@@ -44,9 +44,9 @@
 
 
 
-<if @contacts:rowcount@ gt 0>
+<if @contacts:rowcount;literal@ gt 0>
 
-<if @contacts:rowcount@ gt @max_dspl@>
+<if @contacts:rowcount;literal@ gt @max_dspl@>
   @showing@ of @total_contacts@ contacts<br/>
 </if>
 
@@ -125,7 +125,7 @@
   </td>
 
   
-  <if @admin_p@ eq 1>
+  <if @admin_p;literal@ true>
    <td width="2%">
     <a href="add-edit?contact_id=@contacts.contact_id@">
      <img src="/graphics/Edit16.gif" border="0" alt="Edit""></a>
