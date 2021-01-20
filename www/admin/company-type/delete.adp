@@ -4,7 +4,7 @@
 
 <h3>@title@</h3>
 <hr>
-Are you sure you want to delete <b>@one_company_type.company_type_name@</b>?<br>
+Are you sure you want to delete <strong>@one_company_type.company_type_name@</strong>?<br>
 
 <a href="delete-2?company_type_id=@one_company_type.company_type_id@">Delete</a><p>
 <a href=".">Return</a>

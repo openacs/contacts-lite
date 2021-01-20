@@ -5,32 +5,32 @@
 <h3>Address Details</h3>
 @addresses.pretty_name@
 <table width="100%" summary="Main Table">
-    <tr><th valign=top align=right>Address</th>
+    <tr><th valign="top" align="right">Address</th>
     <td>@addresses.delivery_address@</a></td>
     </tr>
 
-    <tr><th valign=top align=right>City</th>
+    <tr><th valign="top" align="right">City</th>
     <td> @addresses.municipality@ </td></tr>
 
-    <tr><th valign=top align=right>Region</th>
+    <tr><th valign="top" align="right">Region</th>
     <td> @addresses.region@ </td></tr>
  
-    <tr><th valign=top align=right>Zipcode</th>
+    <tr><th valign="top" align="right">Zipcode</th>
     <td> @addresses.postal_code@ </td></tr>
 
-    <tr><th valign=top align=right>Country</th>
+    <tr><th valign="top" align="right">Country</th>
     <td> @addresses.country@ </td></tr>
 
-    <tr><th valign=top align=right>Address Type</th>
+    <tr><th valign="top" align="right">Address Type</th>
     <td> @addresses.add_desc@ </td></tr>
 
     <tr>
       <td colspan="2" align="right">
 	<if @addresses.write_p;literal@ true>
-          <a href="addresses/add-edit?contact_id=@contact_id@&address_id=@addresses.address_id@">edit</a> 
+          <a href="addresses/add-edit?contact_id=@contact_id@&amp;address_id=@addresses.address_id@">edit</a> 
         </if>
         <if @addresses.delete_p;literal@ true>
-	  <a href="addresses/delete?address_id=@addresses.address_id@&contact_id=@contact_id@">delete</a>
+	  <a href="addresses/delete?address_id=@addresses.address_id@&amp;contact_id=@contact_id@">delete</a>
   	</if>
       </td>
     </tr>

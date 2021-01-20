@@ -10,27 +10,27 @@
 
 @contacts.pretty_name@<br>
 
-<b>@contacts.company_name@</b><br>
+<strong>@contacts.company_name@</strong><br>
 
 
 <if @addresses:rowcount;literal@ gt 0>
 <table border="0" cellspacing="0" cellpadding="1" width="100%">
 <tr>
-  <th align=left>Address</th>
+  <th align="left">Address</th>
   <th>&nbsp;</th>
   <th>&nbsp;</th>
 </tr>
 <multiple name=addresses>
 
 <if @addresses.rownum@ odd>
-<tr bgcolor=#eeeeee>
+<tr bgcolor="#eeeeee">
 </if>
 <else @addresses.rownum@ even>
-<tr bgcolor=#ffffff>
+<tr bgcolor="#ffffff">
 </else>
 
   <td width="10%">
-    <a href="one?address_id=@addresses.address_id@&contact_id=@addresses.contact_id@">@addresses.address_id@</a>
+    <a href="one?address_id=@addresses.address_id@&amp;contact_id=@addresses.contact_id@">@addresses.address_id@</a>
   </td>
 
   <td width="60%">
@@ -42,7 +42,7 @@
 
   <td width="5%" valign="right">
   <if @addresses.write_p;literal@ true>
-    <a href="add-edit?address_id=@addresses.address_id@&contact_id=@addresses.contact_id@">Edit</a>
+    <a href="add-edit?address_id=@addresses.address_id@&amp;contact_id=@addresses.contact_id@">Edit</a>
   </if>
   <else>
     &nbsp;

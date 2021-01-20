@@ -9,22 +9,22 @@
 </if>
 <hr>
 @contacts.pretty_name@<br>
-<b>@contacts.company_name@</b>
+<strong>@contacts.company_name@</strong>
 <hr>
 <if @phones:rowcount;literal@ gt 0>
-<table border=0 cellspacing=0 cellpadding=1 width=100%>
+<table border="0" cellspacing="0" cellpadding="1" width="100%">
 <tr>
-  <th align=left>Phone Numbers</th>
+  <th align="left">Phone Numbers</th>
   <th>&nbsp;</th>
   <th>&nbsp;</th>
 </tr>
 <multiple name=phones>
 
 <if @phones.rownum@ odd>
-<tr bgcolor=#eeeeee>
+<tr bgcolor="#eeeeee">
 </if>
 <else @phones.rownum@ even>
-<tr bgcolor=#ffffff>
+<tr bgcolor="#ffffff">
 </else>
 
   <td width="10%">
@@ -38,16 +38,16 @@
     @phones.phone_type@
   </td>
 
-  <td width="5%" valign=right>
+  <td width="5%" valign="right">
   <if @phones.write_p;literal@ true>
-    <a href="add-edit?contact_id=@phones.contact_id@&phone_number_id=@phones.phone_number_id@">Edit</a>
+    <a href="add-edit?contact_id=@phones.contact_id@&amp;phone_number_id=@phones.phone_number_id@">Edit</a>
   </if>
   <else>
     &nbsp;
   </else>
   </td>
 
-  <td width="5%" valign=right>
+  <td width="5%" valign="right">
   <if @phones.delete_p;literal@ true>
     <a href="delete?phone_number_id=@phones.phone_number_id@">Delete</a>
   </if>
@@ -62,9 +62,9 @@
 </table>
 </if>
 <else>
-  <table border=0 width=100%>
-    <tr bgcolor=#eeeeee>
-      <td align=center><br>There are no phone numbers<br>&nbsp;</td>
+  <table border="0" width="100%">
+    <tr bgcolor="#eeeeee">
+      <td align="center"><br>There are no phone numbers<br>&nbsp;</td>
     </tr>
   </table>
 </else>

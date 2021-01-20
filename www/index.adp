@@ -59,27 +59,27 @@
       <a href=".?starts_with=@first_letter.letter@">@first_letter.letter@</a>
       </if>
       <else>
-      <b>@first_letter.letter@</b>
+      <strong>@first_letter.letter@</strong>
       </else>
     </multiple>
     <if @starts_with@ eq "all">
-      <b>&nbsp;</b>
+      <strong>&nbsp;</strong>
     </if>
     <else>
-      <a href=".?starts_with=all"><b>All</b></a>
+      <a href=".?starts_with=all"><strong>All</strong></a>
     </else>
     </center>
       <br>
 
     <if @starts_with@ ne "">
     <div style="background-color: #eeeeee; width:100%;">
-    <b>@starts_with@:</b>
+    <strong>@starts_with@:</strong>
     </div>
     </if>
 
     <if @search_p@ ne 0 and @search_string@ ne "">
     <div style="background-color: #eeeeee; width:100%;">
-    <font size="+1"><b>Search results :</b></font>
+    <font size="+1"><strong>Search results :</strong></font>
     </div>
     </if>
   </td>
@@ -88,9 +88,9 @@
 
 <table>
 <tr bgcolor="#cccccc">
-  <th nowrap align="left" width=><a href=".?sort=lname&search_p=@search_p@&search_string=@search_string@&starts_with=@starts_with@">Last Name</a></th>
-  <th nowrap align="left"><a href=".?sort=fname&search_p=@search_p@&search_string=@search_string@&starts_with=@starts_with@">First Name</a></th>
-  <th align="left"><a href=".?sort=cmpny&search_p=@search_p@&search_string=@search_string@&starts_with=@starts_with@">Company</a></th> 
+  <th nowrap align="left" width=><a href=".?sort=lname&amp;search_p=@search_p@&amp;search_string=@search_string@&amp;starts_with=@starts_with@">Last Name</a></th>
+  <th nowrap align="left"><a href=".?sort=fname&amp;search_p=@search_p@&amp;search_string=@search_string@&amp;starts_with=@starts_with@">First Name</a></th>
+  <th align="left"><a href=".?sort=cmpny&amp;search_p=@search_p@&amp;search_string=@search_string@&amp;starts_with=@starts_with@">Company</a></th> 
   <th align="left" width="10%">Category</th>
   <th align="left" width="10%">Email</th>
   <td width="2%">&nbsp;</td>
@@ -147,8 +147,8 @@
 </if>
 <else>
   <table border="0" width="100%">
-    <tr bgcolor=#eeeeee>
-      <td align=center><br>There are no contacts<br>&nbsp;</td>
+    <tr bgcolor="#eeeeee">
+      <td align="center"><br>There are no contacts<br>&nbsp;</td>
     </tr>
   </table>
 </else>
