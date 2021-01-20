@@ -30,7 +30,7 @@ set package_id [ad_conn package_id]
 set user_id [ad_conn user_id]
 
 # make sure they don't perform URL surgery
-ad_require_permission $address_id delete
+permission::require_permission -object_id $address_id -privilege delete
 
 db_1row address_select {
     select address_id,

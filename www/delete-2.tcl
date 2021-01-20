@@ -7,7 +7,7 @@ ad_page_contract {
   contact_id:integer,notnull
 }
 
-ad_require_permission $contact_id delete
+permission::require_permission -object_id $contact_id -privilege delete
 
 db_exec_plsql contact_delete {
 

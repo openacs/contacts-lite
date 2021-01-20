@@ -20,10 +20,10 @@ set phone_types [db_list_of_lists get_phone_types ""]
 set contact_name [db_1row get_contact_name ""]
 
 if { [ad_form_new_p -key phone_id]} {
-#  ad_require_permission $contact_id write
+#  permission::require_permission -object_id $contact_id -privilege write
   set context_bar [ad_context_bar [list "." "Contacts"] [list "one?contact_id=$contact_id" "Contact Info"] "Edit Phone"]
 } else {
-#  ad_require_permission $package_id create
+#  permission::require_permission -object_id $package_id -privilege create
   set context_bar [ad_context_bar [list "." "Contacts"] [list "one?contact_id=$contact_id" "Contact Info"] "New Phone"]
 }
 

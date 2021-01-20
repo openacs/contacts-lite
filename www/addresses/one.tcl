@@ -21,9 +21,9 @@ ad_page_contract {
 }
 
 set context_bar [ad_context_bar [list ".?contact_id=$contact_id" "Address Info"] "One Address"]
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
-set contact_write_p [ad_permission_p $contact_id "write"]
+set contact_write_p [permission::permission_p -object_id $contact_id -privilege "write"]
 
 db_1row address_select {
 } -column_array addresses

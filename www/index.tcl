@@ -22,13 +22,13 @@ ad_page_contract {
 
 set context_bar [ad_context_bar "Contacts"]
 
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 set package_id [ad_conn package_id]
 
 set title "Contacts"
 
-set contacts_create_p [ad_permission_p $package_id create]
-set admin_p [ad_permission_p $package_id admin]
+set contacts_create_p [permission::permission_p -object_id $package_id -privilege create]
+set admin_p [permission::permission_p -object_id $package_id -privilege admin]
 
 
 db_multirow first_letter get_first_letters { *SQL* }
@@ -68,7 +68,7 @@ if { $search_p == 1 && $search_string ne "" } {
 }
 
 
-set max_dspl [ad_parameter MaxContactsShow contacts 10]
+set max_dspl [parameter::get -parameter MaxContactsShow -default 10]
 set count 0
 db_multirow contacts contacts_select "
     select contact_id,

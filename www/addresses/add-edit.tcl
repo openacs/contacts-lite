@@ -34,10 +34,10 @@ set states [db_list_of_lists get_states ""]
 db_1row get_contact { } 
 
 if {![ad_form_new_p -key address_id]} {
-#  ad_require_permission $contact_id write
+#  permission::require_permission -object_id $contact_id -privilege write
   set context_bar [ad_context_bar [list "./?contact_id=$contact_id" "Addresses"] "Edit Address"]
 } else {
-#  ad_require_permission $package_id create
+#  permission::require_permission -object_id $package_id -privilege create
   set context_bar [ad_context_bar [list "./?contact_id=$contact_id" "Addresses"] "New Address"]
 }
 

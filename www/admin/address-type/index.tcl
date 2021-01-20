@@ -19,7 +19,7 @@ set package_id [ad_conn package_id]
 set title "Address Types Admin"
 set context_bar [ad_context_bar $title]
 
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
 ## setup a status bar 
 

@@ -17,10 +17,10 @@ set package_id [ad_conn package_id]
 # note make sure this is subsite aware.
 
 if {[info exists category_id]} {
-  ad_require_permission $category_id write
+  permission::require_permission -object_id $category_id -privilege write
   set page_title "Edit Category"
 } else {
-  ad_require_permission $package_id create
+  permission::require_permission -object_id $package_id -privilege create
   set page_title "New Category"
 }
 

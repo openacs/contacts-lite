@@ -23,13 +23,13 @@ ad_page_contract {
 }
 
 set context_bar [ad_context_bar "Contact Info"]
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
 set contact_admin_p [group::member_p -group_name "Employees"]
 set admin $contact_admin_p
 
 if { $admin ne "1" } {
-        set contact_write_p [ad_permission_p $contact_id "write"]
+        set contact_write_p [permission::permission_p -object_id $contact_id -privilege "write"]
 } else {
         set contact_write_p 1
 }

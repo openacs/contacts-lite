@@ -44,11 +44,11 @@ set company_types [db_list_of_lists get_company_types ""]
 set categories [db_list_of_lists get_categories ""] 
 
 if { ![ad_form_new_p -key contact_id]} {
-#  ad_require_permission $contact_id write
+#  permission::require_permission -object_id $contact_id -privilege write
   set page_title "Edit Contact"
   set context_bar [ad_context_bar [list "." "Contact Info"] [list "one?contact_id=$contact_id" "Contact Info"] $page_title]
 } else {
-#  ad_require_permission $package_id create
+#  permission::require_permission -object_id $package_id -privilege create
   set page_title "New Contact"
   set context_bar [ad_context_bar [list "." "Contacts"] $page_title ]
 }

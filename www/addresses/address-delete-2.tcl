@@ -8,7 +8,7 @@ ad_page_contract {
   contact_id:integer,notnull
 }
 
-ad_require_permission $address_id delete
+permission::require_permission -object_id $address_id -privilege delete
 
 db_1row get_contact "select contact_id from cn_addresses where address_id=:address_id" 
 

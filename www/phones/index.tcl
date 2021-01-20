@@ -21,10 +21,10 @@ set package_id [ad_conn package_id]
 
 set context_bar [ad_context_bar "Phone Info"]
 set title "Phone Numbers"
-set user_id [ad_verify_and_get_user_id]
+set user_id [ad_conn user_id]
 
-set phones_create_p [ad_permission_p $package_id create]
-set admin_p [ad_permission_p $package_id admin]
+set phones_create_p [permission::permission_p -object_id $package_id -privilege create]
+set admin_p [permission::permission_p -object_id $package_id -privilege admin]
 
 db_multirow phones phones_select {
     select  contact_id,phone_number_id,phone_number,
