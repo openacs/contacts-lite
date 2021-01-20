@@ -40,19 +40,27 @@ insert into contact_categories values (acs_object__new(null,'acs_object'), 'Cust
 
 -- plsql
 
-create or replace function contact_category__new (integer,varchar,integer,varchar,integer)
-returns integer as '
-declare
-    p_category_id    alias for $1;
-    p_category_name  alias for $2;
-    p_creation_user  alias for $3;
-    p_creation_ip    alias for $4;
-    p_context_id     alias for $5;
+
+
+-- added
+select define_function_args('contact_category__new','category_id,category_name,creation_user,creation_ip,context_id');
+
+--
+-- procedure contact_category__new/5
+--
+CREATE OR REPLACE FUNCTION contact_category__new(
+   p_category_id integer,
+   p_category_name varchar,
+   p_creation_user integer,
+   p_creation_ip varchar,
+   p_context_id integer
+) RETURNS integer AS $$
+DECLARE
     v_category_id    integer;
-begin
+BEGIN
     v_category_id := acs_object__new (
         p_category_id, 
-        ''contact_category'',
+        'contact_category',
         now(),               
         p_creation_user,     
         p_creation_ip,       
@@ -69,25 +77,35 @@ begin
     PERFORM acs_permission__grant_permission(
        v_category_id,
        p_creation_user,
-       ''admin''
+       'admin'
     );
 
     --
     return v_category_id;
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
 
-create or replace function contact_category__del (integer)
-returns integer as '
-declare
-    p_category_id alias for $1;
-begin
+
+
+-- added
+select define_function_args('contact_category__del','category_id');
+
+--
+-- procedure contact_category__del/1
+--
+CREATE OR REPLACE FUNCTION contact_category__del(
+   p_category_id integer
+) RETURNS integer AS $$
+DECLARE
+BEGIN
     delete from contact_categories
       where category_id = contact_category__del.p_category_id;
 
     perform acs_object__delete(p_category_id);
     return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 

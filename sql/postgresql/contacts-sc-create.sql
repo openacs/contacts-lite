@@ -21,26 +21,26 @@ select acs_sc_impl_alias__new(
 );
 
 
-create function contacts__itrg ()
-returns opaque as '
-begin
-    perform search_observer__enqueue(new.contact_id,''INSERT'');
+CREATE OR REPLACE FUNCTION contacts__itrg () RETURNS trigger AS $$
+BEGIN
+    perform search_observer__enqueue(new.contact_id,'INSERT');
     return new;
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
-create function contacts__dtrg ()
-returns opaque as '
-begin
-    perform search_observer__enqueue(old.contact_id,''DELETE'');
+CREATE OR REPLACE FUNCTION contacts__dtrg () RETURNS trigger AS $$
+BEGIN
+    perform search_observer__enqueue(old.contact_id,'DELETE');
     return old;
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
-create function contacts__utrg ()
-returns opaque as '
-begin
-    perform search_observer__enqueue(old.contact_id,''UPDATE'');
+CREATE OR REPLACE FUNCTION contacts__utrg () RETURNS trigger AS $$
+BEGIN
+    perform search_observer__enqueue(old.contact_id,'UPDATE');
     return old;
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
 
 create trigger contacts__itrg after insert on contacts

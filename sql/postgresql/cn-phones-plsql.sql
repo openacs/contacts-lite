@@ -2,45 +2,54 @@
 
 select acs_object_type__drop_type('cn_phone_number', TRUE);
 
-create function inline_0 () 
-returns integer as '  
-begin 
+CREATE OR REPLACE FUNCTION inline_0 ()  RETURNS integer AS $$  
+BEGIN 
     PERFORM acs_object_type__create_type (  
-  ''cn_phone_number'', -- object_type  
-  ''Phone Number'', -- pretty_name 
-  ''Phone Numbers'', -- pretty_plural 
-  ''acs_object'',   -- supertype 
-  ''cn_phone_numbers'', -- table_name 
-  ''phone_number_id'', -- id_column 
-  ''cn_phone_number'', -- package_name 
-  ''f'', -- abstract_p 
+  'cn_phone_number', -- object_type  
+  'Phone Number', -- pretty_name 
+  'Phone Numbers', -- pretty_plural 
+  'acs_object',   -- supertype 
+  'cn_phone_numbers', -- table_name 
+  'phone_number_id', -- id_column 
+  'cn_phone_number', -- package_name 
+  'f', -- abstract_p 
   null, -- type_extension_table 
   null -- name_method 
   ); 
      return 0;  
-end;' language 'plpgsql'; 
+END;
+$$ LANGUAGE plpgsql; 
 
 select inline_0 (); 
  
 drop function inline_0 ();
 
 
-create or replace function cn_phone_number__new (integer, varchar, integer, integer,varchar,integer,varchar,integer) 
-returns integer as ' 
-declare 
-  p_contact_id alias for $1; -- default 
-  p_phone_number alias for $2; -- default 
-  p_phone_number_id alias for $3; -- default 
-  p_phone_type_id alias for $4; -- default  
-  p_best_contact_time alias for $5;
-  p_creation_user alias for $6;
-  p_creation_ip alias for $7;
-  p_context_id alias for $8;
+
+
+-- added
+select define_function_args('cn_phone_number__new','contact_id,phone_number,phone_number_id,phone_type_id,best_contact_time,creation_user,creation_ip,context_id');
+
+--
+-- procedure cn_phone_number__new/8
+--
+CREATE OR REPLACE FUNCTION cn_phone_number__new(
+   p_contact_id integer,      -- default
+   p_phone_number varchar,    -- default
+   p_phone_number_id integer, -- default
+   p_phone_type_id integer,   -- default
+   p_best_contact_time varchar,
+   p_creation_user integer,
+   p_creation_ip varchar,
+   p_context_id integer
+
+) RETURNS integer AS $$
+DECLARE 
   v_phone_number_id cn_phone_numbers.phone_number_id%TYPE; 
-begin 
+BEGIN 
   v_phone_number_id := acs_object__new (  
     null,  
-    ''cn_phone_number'', 
+    'cn_phone_number', 
     now(), 
     p_creation_user, 
     p_creation_ip, 
@@ -55,20 +64,29 @@ begin
   PERFORM acs_permission__grant_permission (
      v_phone_number_id,
      p_creation_user,
-     ''admin''
+     'admin'
   );
 
   return v_phone_number_id;
 
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
 
-create or replace function cn_phone_number__del (integer) 
-returns integer as ' 
-declare 
- p_phone_number_id    alias for $1; 
+
+
+-- added
+select define_function_args('cn_phone_number__del','phone_number_id');
+
+--
+-- procedure cn_phone_number__del/1
+--
+CREATE OR REPLACE FUNCTION cn_phone_number__del(
+   p_phone_number_id integer
+) RETURNS integer AS $$
+DECLARE 
  v_return integer := 0;  
-begin 
+BEGIN 
 
    delete from acs_permissions 
      where object_id = p_phone_number_id; 
@@ -76,23 +94,33 @@ begin
    delete from cn_phone_numbers 
      where phone_number_id = p_phone_number_id;
 
-   raise NOTICE ''Deleting cn_phone_number...'';
+   raise NOTICE 'Deleting cn_phone_number...';
 
    return v_return;
 
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
   
-create or replace function cn_phone_number__set (integer, varchar, integer, integer, varchar)   
-returns integer as ' 
-declare 
-  p_contact_id alias for $1; -- default 
-  p_phone_number alias for $2; -- default 
-  p_phone_number_id alias for $3; -- default 
-  p_phone_type_id alias for $4; -- default  
-  p_best_contact_time alias for $5;
+
+
+-- added
+select define_function_args('cn_phone_number__set','contact_id,phone_number,phone_number_id,phone_type_id,best_contact_time');
+
+--
+-- procedure cn_phone_number__set/5
+--
+CREATE OR REPLACE FUNCTION cn_phone_number__set(
+   p_contact_id integer,      -- default
+   p_phone_number varchar,    -- default
+   p_phone_number_id integer, -- default
+   p_phone_type_id integer,   -- default
+   p_best_contact_time varchar
+
+) RETURNS integer AS $$
+DECLARE 
   v_return integer := 0; 
-begin  
+BEGIN  
 
   if p_contact_id is not null
   then
@@ -119,4 +147,5 @@ begin
   end if;
 
   return v_return;
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;

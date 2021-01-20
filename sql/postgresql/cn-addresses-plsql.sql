@@ -2,49 +2,57 @@
 
 select acs_object_type__drop_type('cn_address', TRUE);
 
-create function inline_0 () 
-returns integer as '  
-begin 
+CREATE OR REPLACE FUNCTION inline_0 ()  RETURNS integer AS $$  
+BEGIN 
     PERFORM acs_object_type__create_type (  
-  ''cn_address'', -- object_type  
-  ''Address'', -- pretty_name 
-  ''Addresses'', -- pretty_plural 
-  ''acs_object'',   -- supertype 
-  ''cn_addresses'', -- table_name 
-  ''address_id'', -- id_column 
+  'cn_address', -- object_type  
+  'Address', -- pretty_name 
+  'Addresses', -- pretty_plural 
+  'acs_object',   -- supertype 
+  'cn_addresses', -- table_name 
+  'address_id', -- id_column 
   null, -- package_name 
-  ''f'', -- abstract_p 
+  'f', -- abstract_p 
   null, -- type_extension_table 
   null -- name_method 
   ); 
 
      return 0;  
-end;' language 'plpgsql'; 
+END;
+$$ LANGUAGE plpgsql; 
 
 select inline_0 (); 
  
 drop function inline_0 ();
 
-create or replace function cn_address__new (integer,integer, integer, varchar, varchar, varchar, varchar,varchar,
-        integer,varchar, integer) 
-returns integer as ' 
-declare 
-  p_address_id alias for $1;
-  p_address_type_id alias for $2; -- default 
-  p_contact_id alias for $3; -- default 
-  p_delivery_address alias for $4; -- default 
-  p_municipality alias for $5; -- default null
-  p_postal_code alias for $6; -- default null
-  p_region alias for $7; -- default null 
-  p_country_code alias for $8;
-  p_creation_user alias for $9; 
-  p_creation_ip alias for $10;
-  p_context_id alias for $11;
+
+
+-- added
+select define_function_args('cn_address__new','address_id,address_type_id,contact_id,delivery_address,municipality;null,postal_code;null,region;null,country_code,creation_user,creation_ip,context_id');
+
+--
+-- procedure cn_address__new/11
+--
+CREATE OR REPLACE FUNCTION cn_address__new(
+   p_address_id integer,
+   p_address_type_id integer,  -- default
+   p_contact_id integer,       -- default
+   p_delivery_address varchar, -- default
+   p_municipality varchar,     -- default null
+   p_postal_code varchar,      -- default null
+   p_region varchar,           -- default null
+   p_country_code varchar,
+   p_creation_user integer,
+   p_creation_ip varchar,
+   p_context_id integer
+
+) RETURNS integer AS $$
+DECLARE 
   v_address_id cn_addresses.address_id%TYPE; 
-begin 
+BEGIN 
   v_address_id := acs_object__new (  
     p_address_id,  
-    ''cn_address'', 
+    'cn_address', 
     now(), 
     p_creation_user, 
     p_creation_ip, 
@@ -60,33 +68,39 @@ begin
   PERFORM acs_permission__grant_permission (
      v_address_id,
      p_creation_user,
-     ''admin''
+     'admin'
   );
 
   return v_address_id;
 
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
-create or replace function cn_address__new (integer, integer, varchar, varchar, varchar, varchar,varchar,
-        integer,varchar, integer) 
-returns integer as ' 
-declare 
-  p_address_type_id alias for $1; -- default 
-  p_contact_id alias for $2; -- default 
-  p_delivery_address alias for $3; -- default 
-  p_municipality alias for $4; -- default null
-  p_postal_code alias for $5; -- default null
-  p_region alias for $6; -- default null 
-  p_country_code alias for $7;
-  p_creation_user alias for $8; 
-  p_creation_ip alias for $9;
-  p_context_id alias for $10;
+
+
+--
+-- procedure cn_address__new/10
+--
+CREATE OR REPLACE FUNCTION cn_address__new(
+   p_address_type_id integer,  -- default
+   p_contact_id integer,       -- default
+   p_delivery_address varchar, -- default
+   p_municipality varchar,     -- default null
+   p_postal_code varchar,      -- default null
+   p_region varchar,           -- default null
+   p_country_code varchar,
+   p_creation_user integer,
+   p_creation_ip varchar,
+   p_context_id integer
+
+) RETURNS integer AS $$
+DECLARE 
 
   v_address_id cn_addresses.address_id%TYPE; 
-begin 
+BEGIN 
   v_address_id := acs_object__new (  
     null,  
-    ''cn_address'', 
+    'cn_address', 
     now(), 
     p_creation_user, 
     p_creation_ip, 
@@ -102,12 +116,13 @@ begin
   PERFORM acs_permission__grant_permission (
      v_address_id,
      p_creation_user,
-     ''admin''
+     'admin'
   );
 
   return v_address_id;
 
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
 create or replace  function cn_address__del (integer) 
 returns integer as ' 
@@ -127,19 +142,28 @@ begin
 
 end;' language 'plpgsql';
 
-create or replace function cn_address__set (integer, integer, integer, varchar, varchar, varchar, varchar,varchar)   
-returns integer as ' 
-declare 
-  p_address_id alias for $1; -- default 
-  p_address_type_id alias for $2; -- default 
-  p_contact_id alias for $3; -- default 
-  p_delivery_address alias for $4; -- default 
-  p_municipality alias for $5; -- default null
-  p_postal_code alias for $6; -- default null
-  p_region alias for $7; -- default null 
-  p_country_code alias for $8;
+
+
+-- added
+select define_function_args('cn_address__set','address_id,address_type_id,contact_id,delivery_address,municipality;null,postal_code;null,region;null,country_code');
+
+--
+-- procedure cn_address__set/8
+--
+CREATE OR REPLACE FUNCTION cn_address__set(
+   p_address_id integer,       -- default
+   p_address_type_id integer,  -- default
+   p_contact_id integer,       -- default
+   p_delivery_address varchar, -- default
+   p_municipality varchar,     -- default null
+   p_postal_code varchar,      -- default null
+   p_region varchar,           -- default null
+   p_country_code varchar
+
+) RETURNS integer AS $$
+DECLARE 
   v_return integer := 0; 
-begin  
+BEGIN  
 
   if p_address_type_id is not null
   then
@@ -184,7 +208,8 @@ begin
   end if;
 
   return v_return;
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
 
 
