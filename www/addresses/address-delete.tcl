@@ -11,9 +11,9 @@ ad_page_contract {
    contact_id:integer,notnull
 }  -validate {
     address_exists -requires {address_id} {
-	if ![db_0or1row address_exists {
+	if {![db_0or1row address_exists {
 	    select 1 from cn_addresses where address_id = :address_id
-	}] {
+	}]} {
 	    ad_complain "Address $address_id does not exist"
 	    return 0
 	}

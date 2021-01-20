@@ -10,7 +10,7 @@ ad_page_contract {
    address_id:integer,notnull
 }  -validate {
     address_exists -requires {address_id} {
-	if ![db_0or1row address_exists { }] {
+	if {![db_0or1row address_exists { }]} {
 	    ad_complain "Address $address_id does not exist"
 	    return 0
 	}

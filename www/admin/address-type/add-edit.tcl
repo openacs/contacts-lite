@@ -48,11 +48,11 @@ template::element create new_address_type_name description \
 ### start of processing of update/new
 #######################################
 
-if [template::form is_valid new_address_type_name] {
+if {[template::form is_valid new_address_type_name]} {
   set user_id [ad_conn user_id]
   set peeraddr [ad_conn peeraddr]
 
-  if [info exists address_type_id] {
+  if {[info exists address_type_id]} {
     db_dml address_set {
     }
 } else {

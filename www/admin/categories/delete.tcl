@@ -10,9 +10,9 @@ ad_page_contract {
    category_id:integer,notnull
 }  -validate {
     category_exists -requires {category_id} {
-	if ![db_0or1row category_exists {
+	if {![db_0or1row category_exists {
 	    select 1 from contact_categories where category_id = :category_id
-	}] {
+	}]} {
 	    ad_complain "Category $category_id does not exist"
 	    return 0
 	}

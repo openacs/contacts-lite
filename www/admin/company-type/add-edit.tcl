@@ -52,11 +52,11 @@ template::element create new_company_type_name company_type_name \
 ### start of processing of update/new
 #######################################
 
-if [template::form is_valid new_company_type_name] {
+if {[template::form is_valid new_company_type_name]} {
   set user_id [ad_conn user_id]
   set peeraddr [ad_conn peeraddr]
 
-  if [info exists company_type_id] {
+  if {[info exists company_type_id]} {
     db_dml company_set {
     }
 } else {

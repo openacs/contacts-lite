@@ -99,13 +99,13 @@ if { [string compare $phone_type  "on"] == 0 } {
 
 #append output "where: $where_clause\n"
 
-if { ![string compare [lindex $where_clause 0] ""  ] == 0   } {
+if { [lindex $where_clause 0] eq "" == 0   } {
     set where_clause "and c.category_id=[join $where_clause]"
 } else {
     set where_clause "" 
 } 
 
-if { ![string compare [lindex $sort_by 0] "" ] == 0 } {
+if { [lindex $sort_by 0] eq "" == 0 } {
     set order_by "$where_clause \n order by [join $sort_by ,]"
 } else {
     set order_by "$where_clause" 

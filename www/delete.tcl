@@ -10,9 +10,9 @@ ad_page_contract {
    contact_id:integer,notnull
 }  -validate {
     contact_exists -requires {contact_id} {
-	if ![db_0or1row contact_exists {
+	if {![db_0or1row contact_exists {
 	    select 1 from contacts where contact_id = :contact_id
-	}] {
+	}]} {
 	    ad_complain "Contact $contact_id does not exist"
 	    return 0
 	}

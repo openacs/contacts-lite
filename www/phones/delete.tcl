@@ -10,9 +10,9 @@ ad_page_contract {
    phone_number_id:integer,notnull
 }  -validate {
     phone_exists -requires {phone_number_id} {
-	if ![db_0or1row phone_exists {
+	if {![db_0or1row phone_exists {
 	    select 1 from cn_phone_numbers where phone_number_id = :phone_number_id
-	}] {
+	}]} {
 	    ad_complain "phone $phone_number_id does not exist"
 	    return 0
 	}

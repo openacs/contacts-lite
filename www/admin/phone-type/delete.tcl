@@ -7,14 +7,17 @@ ad_page_contract {
     @cvs-id $Id$
 
     $Log$
+    Revision 1.1  2021/01/20 18:35:37  gustafn
+    New package as provided by Jon Griffin
+
 
 } {
    phone_type_id:integer,notnull
 }  -validate {
     phone_type_exists -requires {phone_type_id} {
-	if ![db_0or1row phone_type_exists {
+	if {![db_0or1row phone_type_exists {
 
-	}] {
+	}]} {
 	    ad_complain "Phone Type $phone_type_id does not exist"
 	    return 0
 	}

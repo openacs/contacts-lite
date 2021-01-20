@@ -54,11 +54,11 @@ template::element create new_category category_name \
 ### start of processing of update/new
 #######################################
 
-if [template::form is_valid new_category] {
+if {[template::form is_valid new_category]} {
   set user_id [ad_conn user_id]
   set peeraddr [ad_conn peeraddr]
 
-  if [info exists category_id] {
+  if {[info exists category_id]} {
     db_dml category_update {
       update contact_categories
       set category_name   = :category_name

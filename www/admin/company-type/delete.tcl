@@ -10,9 +10,9 @@ ad_page_contract {
    company_type_id:integer,notnull
 }  -validate {
     company_type_exists -requires {company_type_id} {
-	if ![db_0or1row company_type_exists {
+	if {![db_0or1row company_type_exists {
 
-	}] {
+	}]} {
 	    ad_complain "Company Type $company_type_id does not exist"
 	    return 0
 	}

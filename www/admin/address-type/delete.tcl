@@ -10,9 +10,9 @@ ad_page_contract {
    address_type_id:integer,notnull
 }  -validate {
     address_type_exists -requires {address_type_id} {
-	if ![db_0or1row address_type_exists {
+	if {![db_0or1row address_type_exists {
 
-	}] {
+	}]} {
 	    ad_complain "Address Type $address_type_id does not exist"
 	    return 0
 	}
