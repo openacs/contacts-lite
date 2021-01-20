@@ -7,6 +7,11 @@ ad_page_contract {
     @cvs-id $Id$
 
     $Log$
+    Revision 1.2  2021/01/20 21:17:08  gustafn
+    improve Tcl code
+    - brace expressions
+    - prefer current idioms
+
     Revision 1.1  2021/01/20 18:35:37  gustafn
     New package as provided by Jon Griffin
 
