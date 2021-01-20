@@ -1,0 +1,1 @@
+add table for mask type for reporting. use us as default.
