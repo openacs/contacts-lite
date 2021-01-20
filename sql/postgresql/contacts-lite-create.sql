@@ -1,6 +1,6 @@
 -- @cvs-id:$Id$	
 
-create table cn_company_types (
+create table IF NOT EXISTS cn_company_types (
     company_type_id     integer
                         constraint company_types_pk
                             primary key, 
@@ -28,7 +28,7 @@ Pretty name.
 -- 
 \i contact-category.sql
 
-create table contacts (
+create table IF NOT EXISTS contacts (
     contact_id           integer 
                          constraint contacts_contact_id_pk
                              primary key
@@ -54,7 +54,7 @@ create table contacts (
     title                varchar (100)
 );
 
-create index contacts_email_ix on contacts (email);
+create index IF NOT EXISTS contacts_email_ix on contacts (email);
 
 comment on table contacts is '
 This is the main table for contacts.

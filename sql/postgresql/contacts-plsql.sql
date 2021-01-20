@@ -1,5 +1,7 @@
 -- @cvs-id: $Id$	
 
+select acs_object_type__drop_type('contact', TRUE);
+
 create function inline_0 () 
 returns integer as '  
 begin 
@@ -23,7 +25,7 @@ select inline_0 ();
 
 drop function inline_0 ();
 
-create function contact__new (varchar, varchar, varchar, varchar, varchar, 
+create or replace function contact__new (varchar, varchar, varchar, varchar, varchar, 
     varchar, varchar, varchar, integer, integer, text, varchar, varchar, integer,varchar,integer,integer) 
 returns integer as ' 
 declare 

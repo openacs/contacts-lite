@@ -4,6 +4,7 @@
 -- To disable simply change permissions or move pages to admin/
 
 -- Create an acs_object type
+select acs_object_type__drop_type('contact_category', TRUE);
 select acs_object_type__create_type (
     'contact_category',
     'Contact Category',
@@ -17,7 +18,9 @@ select acs_object_type__create_type (
     'acs_object__default_name'
 );
 
-create table contact_categories
+DROP TABLE IF EXISTS contact_categories CASCADE;
+
+create table IF NOT EXISTS contact_categories
 (
     category_id                      integer
                                      constraint contact_categories_id_pk
@@ -30,14 +33,14 @@ create table contact_categories
 );
 
 
-insert into contact_categories values (acs_object_id_seq.nextval,'Agents');
-insert into contact_categories values (acs_object_id_seq.nextval,'Employees');
-insert into contact_categories values (acs_object_id_seq.nextval,'Supplier');
-insert into contact_categories values (acs_object_id_seq.nextval,'Customer');
+insert into contact_categories values (acs_object__new(null,'acs_object'), 'Agents');
+insert into contact_categories values (acs_object__new(null,'acs_object'), 'Employees');
+insert into contact_categories values (acs_object__new(null,'acs_object'), 'Supplier');
+insert into contact_categories values (acs_object__new(null,'acs_object'), 'Customer');
 
 -- plsql
 
-create function contact_category__new (integer,varchar,integer,varchar,integer)
+create or replace function contact_category__new (integer,varchar,integer,varchar,integer)
 returns integer as '
 declare
     p_category_id    alias for $1;
@@ -74,7 +77,7 @@ begin
 end;' language 'plpgsql';
 
 
-create function contact_category__del (integer)
+create or replace function contact_category__del (integer)
 returns integer as '
 declare
     p_category_id alias for $1;

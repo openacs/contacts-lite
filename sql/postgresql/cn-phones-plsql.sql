@@ -1,5 +1,6 @@
 -- @cvs-id: $Id$
 
+select acs_object_type__drop_type('cn_phone_number', TRUE);
 
 create function inline_0 () 
 returns integer as '  
@@ -16,7 +17,6 @@ begin
   null, -- type_extension_table 
   null -- name_method 
   ); 
-
      return 0;  
 end;' language 'plpgsql'; 
 
@@ -90,7 +90,7 @@ declare
   p_phone_number alias for $2; -- default 
   p_phone_number_id alias for $3; -- default 
   p_phone_type_id alias for $4; -- default  
-  p_best_contact_time alias for $5;_
+  p_best_contact_time alias for $5;
   v_return integer := 0; 
 begin  
 

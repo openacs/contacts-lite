@@ -1,5 +1,7 @@
 -- @cvs-id: $Id$
 
+select acs_object_type__drop_type('cn_address', TRUE);
+
 create function inline_0 () 
 returns integer as '  
 begin 

@@ -1,6 +1,9 @@
 -- @cvs-id: $Id$
 
--- lookup table 
+-- lookup table
+ 
+DROP TABLE IF EXISTS cn_address_types CASCADE;
+
 create table cn_address_types
 (
     address_type_id  integer
@@ -13,7 +16,7 @@ create table cn_address_types
 
 -- main table
 
-create table cn_addresses
+create table IF NOT EXISTS cn_addresses
 (
     address_id                       integer 
                                      constraint cn_addresses_address_id_pk
@@ -67,10 +70,10 @@ comment on column cn_addresses.address_type_id is '
 This is a foreign key link into address_types.
 ';
 
-insert into cn_address_types values (acs_object_id_seq.nextval,'Primary Business');
-insert into cn_address_types values (acs_object_id_seq.nextval,'Primary Home');
-insert into cn_address_types values (acs_object_id_seq.nextval,'Mailing');
-insert into cn_address_types values (acs_object_id_seq.nextval,'Primary Business');
+insert into cn_address_types values (nextval('t_acs_attribute_id_seq'), 'Primary Business');
+insert into cn_address_types values (nextval('t_acs_attribute_id_seq'), 'Primary Home');
+insert into cn_address_types values (nextval('t_acs_attribute_id_seq'), 'Mailing');
+insert into cn_address_types values (nextval('t_acs_attribute_id_seq'), 'Primary Business');
 
 
 -- plsql

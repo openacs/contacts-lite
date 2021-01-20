@@ -1,6 +1,8 @@
 -- @cvs-id: $Id$
 
-create table cn_phone_types (
+DROP TABLE IF EXISTS cn_phone_types CASCADE;
+
+create table IF NOT EXISTS cn_phone_types (
     phone_type_id                  integer
                                    constraint cn_phone_types_id_pk
                                      primary key,
@@ -9,13 +11,13 @@ create table cn_phone_types (
                                      not null
 );
 
-insert into cn_phone_types values (acs_object_id_seq.nextval,'Business - Primary');
-insert into cn_phone_types values (acs_object_id_seq.nextval,'Business - Fax');
-insert into cn_phone_types values (acs_object_id_seq.nextval,'Cellular');
-insert into cn_phone_types values (acs_object_id_seq.nextval,'Pager');
+insert into cn_phone_types values (nextval('t_acs_attribute_id_seq'), 'Business - Primary');
+insert into cn_phone_types values (nextval('t_acs_attribute_id_seq'), 'Business - Fax');
+insert into cn_phone_types values (nextval('t_acs_attribute_id_seq'), 'Cellular');
+insert into cn_phone_types values (nextval('t_acs_attribute_id_seq'), 'Pager');
 
 
-create table cn_phone_numbers
+create table IF NOT EXISTS cn_phone_numbers
 (
     phone_number_id                  integer
                                      constraint cn_phone_number_id_pk
