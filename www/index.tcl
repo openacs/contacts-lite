@@ -70,23 +70,7 @@ if { $search_p == 1 && $search_string ne "" } {
 
 set max_dspl [parameter::get -parameter MaxContactsShow -default 10]
 set count 0
-db_multirow contacts contacts_select "
-    select contact_id,
-           family_name,
-           given_name,
-           middle_name,
-	   company_name,
-           'f' as write_p,
-           'f' as delete_p,
-           p.first_names || ' ' || p.last_name as owner,
-           g.category_name as category
-    from contacts c, acs_objects o, persons p, contact_categories g
-    where c.contact_id = o.object_id
-    and o.creation_user = p.person_id(+)
-    and c.category_id = g.category_id(+)
-    ${search_clause}
-    ${starts_with_clause}
-    order by $ordering" {
+db_multirow contacts contacts_select {} {
 	incr count
 	if { $count < $start } continue
 	if { $count >= ($start + $max_dspl) } break
