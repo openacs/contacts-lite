@@ -89,7 +89,7 @@ db_multirow contacts contacts_select "
     order by $ordering" {
 	incr count
 	if { $count < $start } continue
-	if { $count >= ($start + $max_dspl)] } break
+	if { $count >= ($start + $max_dspl) } break
 }
 
 #    and o.context_id = :package_id
