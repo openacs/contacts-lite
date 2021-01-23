@@ -33,11 +33,11 @@ ad_form -name new_phone -form {
     {contact_id:text(hidden)
 	{value {$contact_id}}}
 
-    {pretty_name:text(inform)
+    {pretty_name:text(inform),noquote
 	{label " "} 
 	{value {<i>$contact_info</i>}}}
 
-    {spacer1:text(inform)
+    {spacer1:text(inform),noquote
 	{label " " }
 	{value {&nbsp;}}}
 

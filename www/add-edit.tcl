@@ -41,7 +41,7 @@ set phono_link "<a href='phones/.?contact_id=$contact_id'><b>Edit Phones</b></a>
 #query company_types multilist "select company_type_name, company_type_id from company_types"
 #query categories multilist "select category_name, category_id from contact_categories"
 set company_types [db_list_of_lists get_company_types ""]
-set categories [db_list_of_lists get_categories ""] 
+set categories [db_list_of_lists get_categories ""]
 
 if { ![ad_form_new_p -key contact_id]} {
 #  permission::require_permission -object_id $contact_id -privilege write
@@ -57,102 +57,100 @@ ad_form -name new_contact -form {
     contact_id:key
 
     {affix:text(text),optional
-	{label "Affix" }
-	{html { size 20 }} 
-	{value {$affix }}}
+        {label "Affix" }
+        {html { size 20 }}
+        {value {$affix }}}
 
-    {given_name:text(text) 
-	{label "First Name" }
-	{html { size 40 }} 
-	{value {[string trim $given_name]}}}
-    
+    {given_name:text(text)
+        {label "First Name" }
+        {html { size 40 }}
+        {value {[string trim $given_name]}}}
+
     {middle_name:text(text),optional
-	{label "Middle"}
-	{html { size 30 } }
-	{value {$middle_name}}}
+        {label "Middle"}
+        {html { size 30 } }
+        {value {$middle_name}}}
 
     {family_name:text(text)
         {label "Last Name" }
-	{html { size 40 } }
-	{value {$family_name}}}
+        {html { size 40 } }
+        {value {$family_name}}}
 
     {formatted_name:text(text)
-	{label "Formatted Name" }
-	{html { size 40 } }
-	{value {$formatted_name}}}
+        {label "Formatted Name" }
+        {html { size 40 } }
+        {value {$formatted_name}}}
 
     {preferred_given_name:text(text)
-	{label "Preferred Name" }
-	{html { size 40 } }
-	{value {$preferred_given_name}}}
+        {label "Preferred Name" }
+        {html { size 40 } }
+        {value {$preferred_given_name}}}
 
     {suffix:text(text),optional
-	{label "Suffix" }
-	{html { size 20 } }
-	{value {$suffix}}}
+        {label "Suffix" }
+        {html { size 20 } }
+        {value {$suffix}}}
 
-    {email:text(text) 
-	{label "Email" }
-	{html { size 40 }} 
-	{value {$email}}}
+    {email:text(text)
+        {label "Email" }
+        {html { size 40 }}
+        {value {$email}}}
 
-    {spacer3:text(inform) 
-	{label " "} 
-	{value {}}}
+    {spacer3:text(inform)
+        {label " "}
+        {value {}}}
 
     {title:text(text),optional
-	{label "Title" }
-	{html { size 40 }} 
-	{value {$title}}}
+        {label "Title" }
+        {html { size 40 }}
+        {value {$title}}}
 
-    {company_name:text(text) 
-	{label "Company Name" }
-	{html { size 40 } }
-	{value {$company_name}}}
+    {company_name:text(text)
+        {label "Company Name" }
+        {html { size 40 } }
+        {value {$company_name}}}
 
-    {company_type_id:text(select) 
-	{label "Company Type" }
-	{options {$company_types }}
-	{value { $company_type_id}}}
-    
-    {category_id:text(select) 
-	{label "Contact Category" }
-	{options {$categories}}
-	{value {$category_id}}}
-    
-    {spacer1:text(inform) 
-	{label " " }
-	{value {&nbsp;}}}
+    {company_type_id:text(select)
+        {label "Company Type" }
+        {options {$company_types }}
+        {value {$company_type_id}}}
 
-    {notes:text(textarea) 
-	{label "Notes" }
-	{html { cols 40 rows 5 } }
-	{value {$notes}}}
+    {category_id:text(select)
+        {label "Contact Category" }
+        {options {$categories}}
+        {value {$category_id}}}
 
-	{spacer2:text(inform) 
-	    {label " " }
-	    {value {}}}
-	
-	{address_link:text(inform) 
-	    {label " " }
-	    {value {$link}}}
+    {spacer1:text(inform),noquote
+        {label " " }
+        {value {&nbsp;}}}
 
-	{phone_link:text(inform) 
-	    {label " "}
-	    {value {$phono_link}}}
-    
+    {notes:text(textarea)
+        {label "Notes" }
+        {html { cols 40 rows 5 } }
+        {value {$notes}}}
+
+    {spacer2:text(inform)
+        {label " " }
+        {value {}}}
+
+    {address_link:text(inform),noquote
+        {label " " }
+        {value {$link}}}
+
+    {phone_link:text(inform),noquote
+        {label " "}
+        {value {$phono_link}}}
+
 
 } -select_query_name contact_select -new_data {
-    db_exec_plsql new_contact { }
+    db_exec_plsql new_contact {}
     ad_returnredirect "./one?contact_id=$contact_id"
     ad_script_abort
+    
 } -edit_data {
-    db_exec_plsql set_contact { }
+    db_exec_plsql set_contact {}
     ad_returnredirect "./one?contact_id=$contact_id"
     ad_script_abort
-} 
+}
 
 ad_return_template
-
-
-

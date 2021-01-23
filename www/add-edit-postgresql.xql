@@ -6,25 +6,24 @@
 <fullquery name="new_contact">      
       <querytext>
         select contact__new (
-	:affix,
-	:given_name,
-        :family_name,
-        :middle_name,
-	:suffix,
-	:formatted_name,
-	:preferred_given_name,
-	:company_name,
-	:company_type_id,
-	:category_id,
-        :notes,
-	:email,
-	:title,
-        :user_id,
-        :peeraddr,
-        :package_id,
-    :contact_id
-    );
-
+	:affix,                   -- affix
+	:given_name,              -- given_name
+        :family_name,             -- family_name 
+        :middle_name,             -- middle name
+	:suffix,                  -- suffix
+	:formatted_name,          -- formatted_name
+	:preferred_given_name,    -- preferred_given_name
+	:company_name,            -- company_name
+	:company_type_id,         -- company_type_id
+	:category_id,             -- category_id
+        :notes,                   -- notes
+	:email,                   -- email
+	:title,                   -- title
+        :user_id,                 -- user_id
+        :peeraddr,                -- peeraddr
+        :package_id,              -- package_id
+        :contact_id               -- contact_id
+        );
       </querytext>
 </fullquery>
 
