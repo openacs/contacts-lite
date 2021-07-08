@@ -95,7 +95,6 @@ CREATE OR REPLACE FUNCTION cn_address__new(
 
 ) RETURNS integer AS $$
 DECLARE 
-
   v_address_id cn_addresses.address_id%TYPE; 
 BEGIN 
   v_address_id := acs_object__new (  
@@ -124,23 +123,27 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-create or replace  function cn_address__del (integer) 
-returns integer as ' 
-declare 
- p_address_id    alias for $1; 
- v_return integer := 0;  
-begin 
+
+select define_function_args('cn_address__del','address_id');
+
+CREATE OR REPLACE FUNCTION cn_address__del (
+   p_address_id integer
+)  RETURNS integer AS $$
+DECLARE 
+ v_return cn_addresses.address_id%TYPE := 0;  
+BEGIN 
    delete from acs_permissions 
      where object_id = p_address_id; 
 
    delete from cn_addresses 
      where address_id = p_address_id;
 
-   raise NOTICE ''Deleting cn_address...'';
+   raise NOTICE 'Deleting cn_address...';
 
    return v_return;
 
-end;' language 'plpgsql';
+END;
+$$ language plpgsql;
 
 
 
