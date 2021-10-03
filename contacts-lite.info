@@ -10,7 +10,7 @@
     <version name="0.3d1" url="http://openacs.org/repository/download/apm/contacts-lite-0.3d1.apm">
         <owner url="mailto:jon@jongriffin.com">Jon Griffin</owner>
         <summary>This is a simple contact database</summary>
-        <release-date>2002-06-11</release-date>
+        <release-date>2021-07-08</release-date>
         <vendor url="www.mayuli.com">Mayuli Enterprises LLC</vendor>
         <description format="text/plain">This is a simple contact database. 
 It doesn't include all the features of ACT, but it does the job for most people.</description>
