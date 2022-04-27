@@ -1,6 +1,6 @@
 <master>
-<property name="title">@title;noquote@</property>
-<property name="context">@context_bar;noquote@</property>
+<property name="title">@title;literal@</property>
+<property name="context">@context_bar;literal@</property>
 
 <h3>@title@</h3>
 <hr>
