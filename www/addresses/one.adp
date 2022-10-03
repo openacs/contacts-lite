@@ -1,6 +1,6 @@
 <master>
-<property name="title">Viewing @addresses.pretty_name;noquote@</property>
-<property name="context_bar">@context_bar;noquote@</property>
+<property name="title">Viewing @addresses.pretty_name;literal@</property>
+<property name="context_bar">@context_bar;literal@</property>
 
 <h3>Address Details</h3>
 @addresses.pretty_name@
